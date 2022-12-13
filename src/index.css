@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: #F1FAEE;
+}
+
+.app-wrapper {
+  display:grid;
+  grid-template-columns: 1fr 8fr;
+  margin-left:5%;
+  margin-right:5%;
+}
+
+
+/* HEADER */
+.header {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  background-color: #A8DADC;
+  display:flex;
+  align-items: center;
+  gap: 25%;
+  border-radius: 10px;
+}
+.header img {
+  max-width: 100px;
+  max-height:100px;
+}
+header h1, header h2 {
+  padding:5px;
+}
+
+/* NAV BAR */
+.nav {
+  padding:5px;
+  grid-column: 1/2;
+  
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 2fr;
+  align-items: end;
+  background-color: #F1FAEE;
+}
+
+.nav>div:hover {
+  cursor: pointer;
+}
+
+/* CONTENT */
+.content {
+  grid-column: 2/3;
+  padding:5px;
+  display: grid;
+}
+
+#user-image {
+  justify-self: end;
+  border: solid 6px #b3bfb8;
+}
+#user-image img {
+  max-width: 170px;
+  max-height: 170px;
+
+}
+
+/* user info */
+
+.user-section {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  gap:20px;
+}
+
+#user-data {
+  grid-column: 2/3;
+  justify-self: end;
+}
+
+#user-post-form {
+  grid-column: 1/3;
+  justify-self: center;
+  display: grid;
+  padding:5px;
+  border: solid 3px #b3bfb8;
+}
+#user-post-form textarea {
+  background-color: #f0f7f4;
+}
+#add-post {
+  background-color: #A2E3C4;
+  transition: 200ms;
+}
+#add-post:hover {
+  transform: scale(1.04);
+  background-color: rgb(118, 202, 138);
+}
+
+
+
+/* posts */

@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/InContact/static/css/main.b82c64e1.css",
+    "main.js": "/InContact/static/js/main.e49814d0.js",
+    "static/media/inco_large.svg": "/InContact/static/media/inco_large.5d809b29b91ebb52f31cc9f786b828aa.svg",
+    "index.html": "/InContact/index.html",
+    "main.b82c64e1.css.map": "/InContact/static/css/main.b82c64e1.css.map",
+    "main.e49814d0.js.map": "/InContact/static/js/main.e49814d0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b82c64e1.css",
+    "static/js/main.e49814d0.js"
+  ]
+}

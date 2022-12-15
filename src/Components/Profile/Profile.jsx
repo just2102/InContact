@@ -14,7 +14,7 @@ const Profile = () => {
 
 
     return ( 
-        <div className="profile">
+      <div className="profile">
         <div className="user-section">
           <div id="user-section_image"><img src="https://media.istockphoto.com/id/139392762/photo/venetian-mask.jpg?s=170667a&w=0&k=20&c=wgFV5biG18-7ApTtgmXieuCsYFEIZiQWJa02eqbQp3s=" alt="" /></div>
 

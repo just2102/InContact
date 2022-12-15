@@ -7,22 +7,25 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 2fr;
     align-items: end;
     background-color: #F1FAEE;
-  }
-  .nav_item {
-    transition: 150ms;
-  }
-  
-  .nav_item:hover {
-    cursor: pointer;
-    color: rgb(26, 131, 154);
-  }
+}
 
-  .nav_item.active {
+.nav_item a {
+  text-decoration: none;
+  transition: 150ms;
+}
+.nav_item a:hover {
+  cursor: pointer;
+  color: rgb(35, 156, 183);
+}
+
+
+a.active {
     color:rgb(188, 165, 31);
     box-shadow: 3px 3px rgb(144, 247, 196);
     transition: 150ms;
-  }
-  .nav_item.active:hover {
+}
+a.active:hover {
     transform: scale(1.03);
     box-shadow: 2px 2px rgb(182, 242, 220);
-  }
+}
+

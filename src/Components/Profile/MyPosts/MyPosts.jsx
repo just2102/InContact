@@ -1,23 +1,45 @@
+import React from 'react'
 import Post from "./Post/Post";
-import image1 from '../../../img/post1.jpg'
-import image2 from '../../../img/post2.jpg'
 
-const MyPosts = () => {
+//styles for this component are defined in the 'Profile.css'
+
+const MyPosts = (props) => {
+  let posts = props.postsData
+
+  
+
+  let postsMapped = posts.map(post=> {
+    return <Post body={post.body} image={post.image} likeCount={post.likeCount}></Post>
+  })
+
+  let newPostElement = React.createRef()
+  
+
+  function addPost () {
+    props.addPost()
+  }
+
+  function onPostChange() {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text)
+  }
 
     return ( 
         <div className="user-section_posts">
         <h2>My posts</h2>
         
         <div id="user-section_form">
-          <textarea id="post" name="post"
-          placeholder="What's on your mind, ?">
+          <textarea name="post"
+          placeholder="What's on your mind, ?"
+          onChange={onPostChange}
+          value={props.newPostText}
+          ref={newPostElement}>
           </textarea>
-          <button id="add-post">Post</button>
+          <button id="add-post" onClick={addPost}>Post</button>
         </div>
 
         <div className="posts">
-            <Post message="Howdy" image={image1} likeCount={125}></Post>
-            <Post message="It's my first post here!" image={image2} likeCount={83}></Post>
+          {postsMapped}
         </div>
 
       </div>

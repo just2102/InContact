@@ -87,11 +87,14 @@
   
   /* posts */
   .user-section_posts {
-    grid-column: 2/3;
+    display: grid;
+    justify-items: center;
+    justify-content: center;
   }
 
   .posts {
-    display:grid;
+    display:flex;
+    flex-direction: column-reverse;
     justify-items: center;
     gap:1rem;
 

@@ -1,0 +1,12 @@
+.messenger {
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+
+}
+
+.messages {
+    grid-column: 2/3;
+}
+
+
+

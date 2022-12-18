@@ -1,0 +1,18 @@
+.container {
+    display:flex;
+    background-color: beige;
+}
+
+.friend {
+
+}
+
+.friend_avatar img {
+    width:130px;
+    height: 130px;
+}
+
+.friend_name {
+    font-style: italic;
+}
+

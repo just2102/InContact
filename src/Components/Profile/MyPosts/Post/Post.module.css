@@ -15,8 +15,9 @@
     max-width: 100%;
     max-height: 100%;
 }
-.item_message {
-    color:gold;
+.item_body {
+    color:black;
+    font-weight: bold;
 }
 
 /* like and share buttons */

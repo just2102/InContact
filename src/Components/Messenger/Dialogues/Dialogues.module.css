@@ -1,0 +1,15 @@
+.dialogues {
+    grid-row: 1/3;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.active {
+    box-shadow: 3px 3px gold;
+}
+
+.item {
+    box-shadow: none;
+}

@@ -1,12 +1,8 @@
 import { useState } from "react";
 import './index.css';
 import {
-  createBrowserRouter,
-  BrowserRouter,
-  RouterProvider,
   Route,
   Routes,
-  Link,
 } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import Nav from "./Components/Nav/Nav";
@@ -18,25 +14,52 @@ import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 
 
-function App() {
-
+const App = (props) => {
   return (
-    <BrowserRouter>
     <div className="app-wrapper">
       <Header></Header>
       <Nav></Nav>
       <div className="app-wrapper-content">
       <Routes>
-      <Route path="/profile" element={<Profile/>} />
-      <Route path="/news" element={<News/>}/>
-      <Route path="/messenger" element={<Messenger/>}/>
-      <Route path="/friends" element={<Friends/>}/>
-      <Route path="/music" element={<Music/>}/>
-      <Route path="/settings" element={<Settings/>}/>
+      <Route 
+      path="/profile" 
+      element={<Profile
+      state={props.state.profilePage}
+      addPost={props.addPost}
+      updateNewPostText={props.updateNewPostText}/>}
+      />
+
+      <Route 
+      path="/news" 
+      element={<News/>}/>
+
+      <Route 
+      path="/messenger/*" 
+      element={<Messenger
+      state={props.state.messengerPage}
+      sendMessage={props.sendMessage}
+      updateNewMessageText={props.updateNewMessageText}
+      />}
+      />
+      
+      <Route 
+      path="/friends" 
+      element={<Friends
+      state={props.state.friends}
+      />}
+      />
+      
+
+      <Route 
+      path="/music" 
+      element={<Music/>}/>
+
+      <Route 
+      path="/settings" 
+      element={<Settings/>}/>
       </Routes>
       </div>
     </div>
-    </BrowserRouter>
   );
 }
 

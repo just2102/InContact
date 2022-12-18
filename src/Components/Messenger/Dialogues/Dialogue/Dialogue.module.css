@@ -1,0 +1,48 @@
+.dialogue {
+    padding:5px;
+    display: grid;
+}
+.dialogue img {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+}
+.dialogue img:hover {
+    cursor: pointer;
+}
+.dialogue:hover {
+    cursor: pointer;
+}
+
+.dialogue_avatar_container {
+    grid-row: 1/3;
+}
+.dialogue_avatar_container img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 20px;
+}
+a {
+    text-decoration: none;
+}
+.dialogue_name {
+    color: gold;
+    text-decoration: none;
+}
+
+
+
+/* grid styling of each dialogue */
+
+.last_message {
+
+}
+
+.dial_active {
+    box-shadow: 3px 3px gold;
+    display: flex;
+}
+.dial_inactive {
+    box-shadow: none;
+    display: flex;
+}

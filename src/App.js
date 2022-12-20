@@ -25,8 +25,8 @@ const App = (props) => {
       path="/profile" 
       element={<Profile
       state={props.state.profilePage}
-      addPost={props.addPost}
-      updateNewPostText={props.updateNewPostText}/>}
+      dispatch={props.dispatch}
+      />}
       />
 
       <Route 
@@ -37,8 +37,7 @@ const App = (props) => {
       path="/messenger/*" 
       element={<Messenger
       state={props.state.messengerPage}
-      sendMessage={props.sendMessage}
-      updateNewMessageText={props.updateNewMessageText}
+      dispatch={props.dispatch}
       />}
       />
       

@@ -4,9 +4,7 @@ import Post from "./Post/Post";
 //styles for this component are defined in the 'Profile.css'
 
 const MyPosts = (props) => {
-  let posts = props.postsData
-
-  
+  let posts = props.state.postsData
 
   let postsMapped = posts.map(post=> {
     return <Post body={post.body} image={post.image} likeCount={post.likeCount}></Post>
@@ -16,14 +14,13 @@ const MyPosts = (props) => {
   
 
   function addPost () {
-    props.addPost()
+    props.dispatch({type:"ADD-POST"})
   }
 
   function onPostChange() {
     let text = newPostElement.current.value;
-    props.updateNewPostText(text)
+    props.dispatch({type:"UPDATE-NEW-POST-TEXT",newText:text})
   }
-
     return ( 
         <div className="user-section_posts">
         <h2>My posts</h2>
@@ -32,7 +29,7 @@ const MyPosts = (props) => {
           <textarea name="post"
           placeholder="What's on your mind, ?"
           onChange={onPostChange}
-          value={props.newPostText}
+          value={props.state.newPostText}
           ref={newPostElement}>
           </textarea>
           <button id="add-post" onClick={addPost}>Post</button>

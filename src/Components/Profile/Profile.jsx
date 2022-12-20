@@ -11,16 +11,13 @@ const Profile = (props) => {
         username: 'just2102',
         status: "I'm building this social network"
     });
-
-
     return ( 
       <div className="profile">
         <UserInfo user={user}></UserInfo>
         <MyPosts 
-        postsData={props.state.postsData} 
-        addPost={props.addPost} 
-        newPostText={props.state.newPostText} 
-        updateNewPostText={props.updateNewPostText}></MyPosts>
+        state={props.state}
+        dispatch={props.dispatch}
+        ></MyPosts>
       </div>
      );
 }

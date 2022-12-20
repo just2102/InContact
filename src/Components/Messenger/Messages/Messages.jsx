@@ -21,11 +21,13 @@ const Messages = (props) => {
     let messageElement = React.createRef()
 
     function sendMessage() {
-        props.sendMessage()
+        let action = {type:"SEND-MESSAGE"}
+        props.dispatch(action)
     }
     function onMessageChange() {
         let message = messageElement.current.value;
-        props.updateNewMessageText(message)
+        let action = {type:"UPDATE-NEW-MESSAGE-TEXT", text: message}
+        props.dispatch(action)
     }
 
     return ( 

@@ -1,23 +1,22 @@
 import { useState } from "react";
 import './Profile.css'
-import MyPosts from "./MyPosts/MyPosts";
-import UserInfo from "./UserInfo/UserInfo";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import UserInfoContainer from "./UserInfo/UserInfoContainer";
 
 const Profile = (props) => {
-    const [user, setUser] = useState({
-        name:'Eli K.',
-        dob: '01.01.1999',
-        education: 'MIT',
-        username: 'just2102',
-        status: "I'm building this social network"
-    });
+    // const [user, setUser] = useState({
+    //     name:'Eli K.',
+    //     dob: '01.01.1999',
+    //     education: 'MIT',
+    //     username: 'just2102',
+    //     status: "I'm building this social network"
+    // });
     return ( 
       <div className="profile">
-        <UserInfo user={user}></UserInfo>
-        <MyPosts 
-        state={props.state}
-        dispatch={props.dispatch}
-        ></MyPosts>
+        <UserInfoContainer store={props.store}></UserInfoContainer>
+        <MyPostsContainer 
+        store={props.store}
+        ></MyPostsContainer>
       </div>
      );
 }

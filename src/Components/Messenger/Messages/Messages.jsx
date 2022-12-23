@@ -18,16 +18,14 @@ const Messages = (props) => {
         return <Message msgBody={message.body} sender={message.sender} avatar={message.avatar}></Message>
     })
 
-    let messageElement = React.createRef()
-
-    function sendMessage() {
-        let action = {type:"SEND-MESSAGE"}
-        props.dispatch(action)
+    function onSendMessage() {
+        props.sendMessage()
+        // props.dispatch(sendMessageCreator())
     }
-    function onMessageChange() {
-        let message = messageElement.current.value;
-        let action = {type:"UPDATE-NEW-MESSAGE-TEXT", text: message}
-        props.dispatch(action)
+    function onMessageChange (e) {
+        let text = e.target.value
+        props.onMessageChange(text)
+        //props.dispatch(updateNewMessageTextCreator(text))
     }
 
     return ( 
@@ -41,12 +39,11 @@ const Messages = (props) => {
 
             <div className={s.textarea}>
                 <textarea name="msg" id="msg" 
-                ref={messageElement}
                 value={props.newMessageText}
                 onChange={onMessageChange}
                 >
                 </textarea>
-                <button id={s.send_message_button} onClick={sendMessage} >Send</button>
+                <button id={s.send_message_button} onClick={onSendMessage} >Send</button>
             </div>
 
         </div>

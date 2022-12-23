@@ -9,9 +9,10 @@ import Nav from "./Components/Nav/Nav";
 import Profile from "./Components/Profile/Profile";
 import News from "./Components/News/News"
 import Messenger from "./Components/Messenger/Messenger";
-import Friends from "./Components/Friends/Friends";
+import FriendsContainer from "./Components/Friends/FriendsContainer";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
+
 
 
 const App = (props) => {
@@ -24,8 +25,9 @@ const App = (props) => {
       <Route 
       path="/profile" 
       element={<Profile
-      state={props.state.profilePage}
-      dispatch={props.dispatch}
+      //state={props.state.profilePage}
+      //dispatch={props.dispatch}
+      store={props.store}
       />}
       />
 
@@ -36,15 +38,19 @@ const App = (props) => {
       <Route 
       path="/messenger/*" 
       element={<Messenger
-      state={props.state.messengerPage}
-      dispatch={props.dispatch}
+
+      // state={props.state.messengerPage}
+      // dispatch={props.dispatch}
+      store={props.store}
       />}
       />
       
       <Route 
       path="/friends" 
-      element={<Friends
-      state={props.state.friends}
+      element={<FriendsContainer
+      // state={props.state.friendsPage}
+      // dispatch={props.dispatch}
+      store={props.store}
       />}
       />
       

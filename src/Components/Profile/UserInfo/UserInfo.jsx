@@ -1,5 +1,5 @@
 const UserInfo = (props) => {
-    const user = props.user
+    const user = props.currentUser
 
     return ( 
         <div className="user-section">

@@ -13,9 +13,11 @@ const Profile = (props) => {
     // });
     return ( 
       <div className="profile">
-        <UserInfoContainer store={props.store}></UserInfoContainer>
+        <UserInfoContainer 
+        //store={props.store}
+        ></UserInfoContainer>
         <MyPostsContainer 
-        store={props.store}
+        //store={props.store}
         ></MyPostsContainer>
       </div>
      );

@@ -36,6 +36,8 @@ export const updateNewPostTextCreator = (text) => {
   }
 
 const profileReducer = (state = initialState, action) => {
+  let stateCopy = {...state}
+
     switch(action.type) {
         case ADD_POST:
             if (state.newPostText!=="") {
@@ -46,13 +48,14 @@ const profileReducer = (state = initialState, action) => {
                     body: state.newPostText, 
                     likeCount: 0
                 }
-                state.postsData.push(newPost)
-                state.newPostText=''
-            } 
-            return state;
+                stateCopy.postsData = [...state.postsData]
+                stateCopy.postsData.push(newPost)
+                stateCopy.newPostText = '';
+            }
+          return stateCopy
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText=action.newText;
-            return state
+            stateCopy.newPostText=action.newText;
+            return stateCopy
         default:
             return state
     }

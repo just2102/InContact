@@ -1,13 +1,19 @@
+import { connect } from "react-redux";
 import UserInfo from "./UserInfo";
 
-const UserInfoContainer = (props) => {
 
-    let profileState = props.store.getState().profilePage
-    let currentUser = profileState.currentUser
-
-    return ( 
-        <UserInfo  currentUser={currentUser}></UserInfo>
-     );
+function mapStateToProps(state) {
+    return {
+        currentUser: state.profilePage.currentUser
+    }
 }
- 
+function mapDispatchToProps(dispatch) {
+    return {
+        
+    }
+}
+
+const UserInfoContainer = connect(mapStateToProps, null) (UserInfo)
+
+
 export default UserInfoContainer;

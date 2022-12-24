@@ -3,6 +3,7 @@ import './index.css';
 import {
   Route,
   Routes,
+// @ts-ignore
 } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import Nav from "./Components/Nav/Nav";
@@ -25,9 +26,7 @@ const App = (props) => {
       <Route 
       path="/profile" 
       element={<Profile
-      //state={props.state.profilePage}
-      //dispatch={props.dispatch}
-      store={props.store}
+      //store={props.store}
       />}
       />
 
@@ -38,19 +37,14 @@ const App = (props) => {
       <Route 
       path="/messenger/*" 
       element={<Messenger
-
-      // state={props.state.messengerPage}
-      // dispatch={props.dispatch}
-      store={props.store}
+      //store={props.store}
       />}
       />
       
       <Route 
       path="/friends" 
       element={<FriendsContainer
-      // state={props.state.friendsPage}
-      // dispatch={props.dispatch}
-      store={props.store}
+      //store={props.store}
       />}
       />
       

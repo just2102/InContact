@@ -31,6 +31,7 @@ export const updateNewMessageTextCreator = (text) =>
 ({type:UPDATE_NEW_MESSAGE_TEXT, text:text})
 
 const messengerReducer = (state = initialState, action) => {
+    let stateCopy = {...state}
     switch (action.type) {
         case SEND_MESSAGE:
             if (state.newMessageText!=="") {
@@ -41,14 +42,15 @@ const messengerReducer = (state = initialState, action) => {
                     sender:'Lenin', 
                     body:state.newMessageText
                 }
-                state.messagesData.push(newMessage);
-            
-                state.newMessageText=''
+                stateCopy.messagesData = [...state.messagesData]
+                stateCopy.messagesData.push(newMessage);
+    
+                stateCopy.newMessageText=''
             }
-            return state
+            return stateCopy
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText=action.text;
-            return state
+            stateCopy.newMessageText=action.text;
+            return stateCopy
         default:
             return state;
     }

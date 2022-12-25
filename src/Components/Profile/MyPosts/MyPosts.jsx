@@ -7,7 +7,7 @@ const MyPosts = (props) => {
   let posts = props.postsData
 
   let postsMapped = posts.map(post=> {
-    return <Post body={post.body} image={post.image} likeCount={post.likeCount}></Post>
+    return <Post body={post.body} image={post.image} likeCount={post.likeCount} key={post.id}></Post>
   })
 
   function onAddPost () {

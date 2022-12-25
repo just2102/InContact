@@ -15,17 +15,15 @@ const Messages = (props) => {
     }
 
     let mappedMessagesData = messages.map(message=> {
-        return <Message msgBody={message.body} sender={message.sender} avatar={message.avatar}></Message>
+        return <Message msgText={message.text} sender={message.sender} avatar={message.avatar} key={message.id}></Message>
     })
 
     function onSendMessage() {
         props.sendMessage()
-        // props.dispatch(sendMessageCreator())
     }
     function onMessageChange (e) {
         let text = e.target.value
-        props.onMessageChange(text)
-        //props.dispatch(updateNewMessageTextCreator(text))
+        props.updateNewMessageText(text)
     }
 
     return ( 

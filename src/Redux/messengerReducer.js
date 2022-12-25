@@ -10,9 +10,9 @@ const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
 let initialState = {
     messagesData:
     [
-        {id:1,sender:'Lenin', body:'Howdy brother!'},
-        {id:2,sender:'Masia', body:'Cringe'},
-        {id:3,sender:'Lenin', body:"It's not cringe, you are"}
+        {id:1,sender:'Lenin', text:'Howdy brother!'},
+        {id:2,sender:'Masia', text:'Cringe'},
+        {id:3,sender:'Lenin', text:"It's not cringe, you are"}
     ],
     dialoguesData:
     [
@@ -31,26 +31,22 @@ export const updateNewMessageTextCreator = (text) =>
 ({type:UPDATE_NEW_MESSAGE_TEXT, text:text})
 
 const messengerReducer = (state = initialState, action) => {
-    let stateCopy = {...state}
     switch (action.type) {
         case SEND_MESSAGE:
             if (state.newMessageText!=="") {
                 let lastMessageId = state.messagesData[state.messagesData.length-1].id
-                let newMessage = 
-                {
-                    id: lastMessageId + 1, 
-                    sender:'Lenin', 
-                    body:state.newMessageText
+                return {
+                    ...state,
+                    newMessageText: '',
+                    messagesData: [...state.messagesData, {id: lastMessageId + 1, sender:'Lenin', text:state.newMessageText}]
                 }
-                stateCopy.messagesData = [...state.messagesData]
-                stateCopy.messagesData.push(newMessage);
-    
-                stateCopy.newMessageText=''
             }
-            return stateCopy
+        break;
         case UPDATE_NEW_MESSAGE_TEXT:
-            stateCopy.newMessageText=action.text;
-            return stateCopy
+            return {
+                ...state,        
+                newMessageText:action.text
+            }
         default:
             return state;
     }

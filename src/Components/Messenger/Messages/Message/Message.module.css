@@ -20,7 +20,7 @@
     grid-column: 2/3;
 }
 
-.message_body {
+.message_text {
     grid-row: 2/3;
     grid-column: 2/3;
 }

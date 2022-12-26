@@ -13,6 +13,7 @@ import Messenger from "./Components/Messenger/Messenger";
 import FriendsContainer from "./Components/Friends/FriendsContainer";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 
 
@@ -44,6 +45,13 @@ const App = (props) => {
       <Route 
       path="/friends" 
       element={<FriendsContainer
+      //store={props.store}
+      />}
+      />
+
+      <Route 
+      path="/users" 
+      element={<UsersContainer
       //store={props.store}
       />}
       />

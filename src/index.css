@@ -17,3 +17,8 @@ body {
 .app-wrapper-content {
   
 }
+
+.preloader { 
+  width:200px;
+  margin: 0 auto;
+}

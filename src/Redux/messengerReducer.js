@@ -26,8 +26,8 @@ let initialState = {
     newMessageText:'some new message text!'
 }
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE})
-export const updateNewMessageTextCreator = (text) => 
+export const sendMessage = () => ({type: SEND_MESSAGE})
+export const updateNewMessageText = (text) => 
 ({type:UPDATE_NEW_MESSAGE_TEXT, text:text})
 
 const messengerReducer = (state = initialState, action) => {

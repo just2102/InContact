@@ -9,7 +9,7 @@ const UNFOLLOW         = 'UNFOLLOW';
 const SET_USERS        = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS  = 'SET_TOTAL_USERS'
-
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING"
 
 let initialState = {
     usersData: [
@@ -21,16 +21,17 @@ let initialState = {
         // {id:6,followed: false, name:'Lenin', status:'Some status...', location:{city:'Toronto',country:'Canada'}, avatar:leninAvatar}
     ],
     totalUsers: 0,
-    numOfUsersOnPage: 80,
-    currentPage: 1
+    numOfUsersOnPage: 30,
+    currentPage: 1,
+    isFetching: false
 }
 
-export const followCreator = (userId)        =>      ({type:FOLLOW, userId: userId})
-export const unfollowCreator = (userId)      =>      ({type:UNFOLLOW, userId: userId})
-export const setUsersCreator = (users)       =>      ({type:SET_USERS, users: users})
-export const setTotalUsersCreator = (number) =>      ({type:SET_TOTAL_USERS, number: number})
-export const setCurrentPageCreator = (page)  =>      ({type:SET_CURRENT_PAGE, page: page})
-
+export const follow = (userId)        =>      ({type:FOLLOW, userId: userId})
+export const unfollow = (userId)      =>      ({type:UNFOLLOW, userId: userId})
+export const setUsers = (users)       =>      ({type:SET_USERS, users: users})
+export const setTotalUsers = (number) =>      ({type:SET_TOTAL_USERS, number: number})
+export const setCurrentPage = (page)  =>      ({type:SET_CURRENT_PAGE, page: page})
+export const toggleIsFetching = (isFetching) =>    ({type:TOGGLE_IS_FETCHING, isFetching: isFetching})
 
 function usersReducer (state = initialState, action) {
     switch(action.type) {
@@ -68,6 +69,11 @@ function usersReducer (state = initialState, action) {
             return {
                 ...state,
                 currentPage: action.page
+            }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default:
             return state

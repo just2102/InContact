@@ -3,7 +3,27 @@
     gap:2rem;
     flex-direction: column;
 }
+.loading_cursor {
+    cursor: progress;
+}
+/* pages */
+.pages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:2rem
+}
+span {
+    cursor: pointer;
+}
+.unselected_page {
 
+}
+.selected_page {
+    font-weight: bolder;
+}
+
+/**/
 
 
 .user {
@@ -20,6 +40,19 @@
     height:80px;
 }
 
+/* follow/unfollow buttons */
+.unfollow_button {
+    background-color: rgb(135, 197, 226);
+    transition: 150ms;
+    border-radius: 8px;
+    padding:5px;
+}
+.unfollow_button:hover {
+    background-color: antiquewhite;
+    transform: scale(1.05);
+    font-weight: bold;
+    cursor: pointer;
+}
 .follow_button {
     background-color: antiquewhite;
     transition: 150ms;
@@ -32,6 +65,8 @@
     font-weight: bold;
     cursor: pointer;
 }
+/**/
+
 
 .user_info {
     background-color: azure;

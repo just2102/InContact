@@ -1,56 +1,44 @@
-import saniaAvatar from "../../img/sania.png"
-import kostiaAvatar from "../../img/kostia.png"
-import vasiaAvatar from "../../img/vasia.png"
-import masiaAvatar from "../../img/masia.png"
-import kirillAvatar from "../../img/kirill.png"
+import styles from "./User/User.module.css"
 import leninAvatar from "../../img/lenin.png"
-import s from "./User/User.module.css"
 
 const Users = (props) => {
-    if (props.usersData.length === 0) {
-        props.setUsers (
-            [
-            {id:1,followed: true, name:'Sania', status:'Some status...', location:{city:'Vladivostok',country:'Russia'}, avatar:saniaAvatar},
-            {id:2,followed: true, name:'Kostia',status:'Some status...', location:{city:'Moscow',country:'Russia'}, avatar:kostiaAvatar},
-            {id:3,followed: true, name:'Vasia', status:'Some status...', location:{city:'Kyiv',country:'Ukraine'}, avatar:vasiaAvatar},
-            {id:4,followed: false, name:'Masia', status:'Some status...', location:{city:'Dalnegorsk',country:'Russia'}, avatar:masiaAvatar},
-            {id:5,followed: false, name:'Kirill',status:'Some status...', location:{city:'Tokyo',country:'Japan'}, avatar:kirillAvatar},
-            {id:6,followed: false, name:'Lenin', status:'Some status...', location:{city:'Toronto',country:'Canada'}, avatar:leninAvatar}
-            ]    
-        )
+    let numberOfPages = Math.ceil(props.totalUsers / props.numOfUsersOnPage)
+    let pages = [];
+    // push all pages as separate integers into pages array to display them on page
+    for (let i = 1 ; i<=numberOfPages; i++) {
+        pages.push(i)
     }
-
-    function onUnfollow (userId) {
-        props.unfollow(userId)
-    }
-    function onFollow (userId) {
-        props.follow(userId)
-    }
-
-    return (
-    <div className={s.users}>
-        {
-        props.usersData.map (user => {
+    let mappedUsers = props.usersData.map (user => {
         return (
-        <div className={s.user}>
-            <div className={s.avatar}><img src={user.avatar} alt="" /></div>
-            {
-            user.followed 
-            ? <button className={s.follow_button} onClick={ () => onUnfollow(user.id)}>Unfollow</button>
-            : <button className={s.follow_button} onClick={ () => onFollow(user.id)}>Follow</button>
-            }
-            <div className={s.user_info}>
-                <div className={s.name_container}>{user.name}</div>
-                <div className={s.status_container}>{user.status}</div>
-                <div className={s.location_container}>{user.location.city}, {user.location.country}</div>
+            <div className={styles.user}>
+                <div className={styles.avatar}><img src={user.photos.small ? user.photos.small : leninAvatar} alt="" /></div>
+                {
+                user.followed 
+                ? <button className={styles.unfollow_button} onClick={ () => props.onUnfollow(user.id)}>Following</button>
+                : <button className={styles.follow_button} onClick={ () => props.onFollow(user.id)}>Not following</button>
+                }
+                <div className={styles.user_info}>
+                    <div className={styles.name_container}>{user.name}</div>
+                    <div className={styles.status_container}>{user.status}</div>
+                    {/* <div className={styles.location_container}>{user.location.city}, {user.location.country}</div> */}
+                </div>
+            </div>
+            )
+    })
+    let mappedPages = pages.map(page => {
+        return <span 
+        className={page===props.currentPage ? styles.selected_page : styles.unselected_page}
+        onClick={() => props.onPageClick(page)}>{page}</span>
+    })
+
+    return ( 
+        <div className={styles.users}>
+            {mappedUsers}
+            <div className={styles.pages}>
+                {mappedPages}
             </div>
         </div>
-        )
-        })
-        }
-    </div>
-    )
-
+     );
 }
  
 export default Users;

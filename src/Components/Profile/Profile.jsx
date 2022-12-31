@@ -1,7 +1,8 @@
-import { useState } from "react";
 import './Profile.css'
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import UserInfoContainer from "./UserInfo/UserInfoContainer";
+//import UserInfoContainer from "./UserInfo/UserInfoContainer";
+import UserInfo from "./UserInfo/UserInfo";
+import Preloader from '../Common/Preloader';
 
 const Profile = (props) => {
     // const [user, setUser] = useState({
@@ -13,12 +14,11 @@ const Profile = (props) => {
     // });
     return ( 
       <div className="profile">
-        <UserInfoContainer 
-        //store={props.store}
-        ></UserInfoContainer>
-        <MyPostsContainer 
-        //store={props.store}
-        ></MyPostsContainer>
+        {props.profile===null
+        ?<Preloader/>
+        :<UserInfo profile={props.profile} />}
+
+        <MyPostsContainer></MyPostsContainer>
       </div>
      );
 }

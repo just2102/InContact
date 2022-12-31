@@ -1,5 +1,6 @@
 import styles from "./User/User.module.css"
 import leninAvatar from "../../img/lenin.png"
+import { NavLink } from "react-router-dom";
 
 const Users = (props) => {
     let numberOfPages = Math.ceil(props.totalUsers / props.numOfUsersOnPage)
@@ -10,8 +11,11 @@ const Users = (props) => {
     }
     let mappedUsers = props.usersData.map (user => {
         return (
+
             <div className={styles.user}>
-                <div className={styles.avatar}><img src={user.photos.small ? user.photos.small : leninAvatar} alt="" /></div>
+                <NavLink to={`/profile/${user.id}`}>
+                    <div className={styles.avatar}><img src={user.photos.small ? user.photos.small : leninAvatar} alt="" /></div>
+                </NavLink>
                 {
                 user.followed 
                 ? <button className={styles.unfollow_button} onClick={ () => props.onUnfollow(user.id)}>Following</button>

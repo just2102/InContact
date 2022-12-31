@@ -1,12 +1,13 @@
 import image1 from '../img/post1.jpg'
 import image2 from '../img/post2.jpg'
 
-const ADD_POST = "ADD-POST"
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
-
+const ADD_POST              = "ADD-POST"
+const UPDATE_NEW_POST_TEXT  = "UPDATE-NEW-POST-TEXT"
+const SET_PROFILE           = "SET_PROFILE"
 let initialState = {
   currentUser: 
   {
+    id: 666666,
     name:'Eli K.',
     dob: '01.01.1999',
     education: 'MIT',
@@ -20,20 +21,13 @@ let initialState = {
       {id:3,body:"edited post..",likeCount:5},
       {id:4,body:"dada",likeCount:3}  
   ],
-  newPostText:'some new post text!'
+  newPostText:'',
+  profile: null
 }
 
-export const addPost = () => {
-    return {
-      type: ADD_POST
-    }
-  }
-export const updateNewPostText = (text) => {
-    return {
-      type: UPDATE_NEW_POST_TEXT,
-      newText: text
-    }
-  }
+export const addPost = ()                 => ({type: ADD_POST})
+export const updateNewPostText = (text)   => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const setProfile = (profile)       => ({type: SET_PROFILE, profile})
 
 const profileReducer = (state = initialState, action) => {
 
@@ -58,6 +52,11 @@ const profileReducer = (state = initialState, action) => {
           return {
             ...state,
             newPostText: action.newText
+          }
+        case SET_PROFILE:
+          return {
+            ...state,
+            profile: action.profile
           }
         default:
             return state

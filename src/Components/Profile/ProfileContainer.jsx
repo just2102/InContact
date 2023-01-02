@@ -8,7 +8,6 @@ import { useLocation, useParams } from 'react-router-dom'
 
 const ProfileAPIComponent = (props) => {
     const params = useParams()
-    debugger
     if (!params.userId) {
         params.userId = 27265
     }

@@ -8,14 +8,18 @@ import { useLocation, useParams } from 'react-router-dom'
 
 const ProfileAPIComponent = (props) => {
     const params = useParams()
+    // to display own profile
     if (!params.userId) {
-        params.userId = 27265
+        params.userId = props.currentUser.id
     }
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.userId}`)
-        .then(response => {
-          props.setProfile(response.data)
-        });
+        // destructure props
+        if (props.profile === null || params.userId !== props.profile.userId) {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.userId}`)
+            .then(response => {
+              props.setProfile(response.data)
+            });
+        }
     })
     return ( 
         <Profile profile = {props.profile}></Profile>
@@ -24,7 +28,8 @@ const ProfileAPIComponent = (props) => {
 
 function mapStateToProps (state) {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        currentUser: state.auth.currentUser
     }
 }
 

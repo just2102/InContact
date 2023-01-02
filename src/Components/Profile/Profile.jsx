@@ -14,7 +14,7 @@ const Profile = (props) => {
     // });
     return ( 
       <div className="profile">
-        {props.profile===null
+        {props.profile===null || props.profile === undefined
         ?<Preloader/>
         :<UserInfo profile={props.profile} />}
 

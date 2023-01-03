@@ -1,7 +1,7 @@
 import styles from "./User/User.module.css"
 import leninAvatar from "../../img/lenin.png"
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { usersAPI } from "../../API/api";
 
 const Users = (props) => {
     let numberOfPages = Math.ceil(props.totalUsers / props.numOfUsersOnPage)
@@ -19,22 +19,22 @@ const Users = (props) => {
                 </NavLink>
                 {
                 user.followed 
-                ? <button className={styles.unfollow_button} onClick={ () => {
-                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{withCredentials:true})
-                    .then(response=>{
-                        if (response.data.resultCode===0) {
-                            
+                ? <button disabled={props.followingInProgress.userId===user.id} className={styles.unfollow_button} onClick={ () => {
+                    props.toggleFollowingInProgress(true, user.id)
+
+                    usersAPI.unfollowUser(user.id).then(data=>{
+                        if (data.resultCode===0) {
                             props.onUnfollow(user.id)
-                        }
+                        } props.toggleFollowingInProgress(false, null)
                     })
                   }}>Following</button>
-                : <button className={styles.follow_button} onClick={ () => {
-                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{},{withCredentials:true})
-                    .then(response=>{
-                        debugger
-                        if (response.data.resultCode===0) {
+                : <button disabled={props.followingInProgress.userId===user.id} className={styles.follow_button} onClick={ () => {
+                    props.toggleFollowingInProgress(true, user.id)
+
+                    usersAPI.followUser(user.id).then(data=>{
+                        if (data.resultCode===0) {
                             props.onFollow(user.id)
-                        }
+                        } props.toggleFollowingInProgress(false, null)
                     })
                   }}>Not following</button>
                 }

@@ -11,7 +11,7 @@ const SET_USER_NOT_FOUND        = "SET_USER_NOT_FOUND"
 let initialState = {
     currentUser: undefined,
     isFetching: false,
-    isAuthorized: false,
+    isAuthorized: undefined,
     doesUserExist: undefined
 }
 
@@ -45,7 +45,8 @@ const authReducer = (state= initialState, action) => {
         case SET_USER_NOT_FOUND:
             return {
                 ...state,
-                doesUserExist:false
+                doesUserExist:false,
+                isAuthorized:false,
             }
         default:
             return state

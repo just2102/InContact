@@ -1,6 +1,7 @@
 import styles from "./User/User.module.css"
 import leninAvatar from "../../img/lenin.png"
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Users = (props) => {
     let numberOfPages = Math.ceil(props.totalUsers / props.numOfUsersOnPage)
@@ -18,8 +19,24 @@ const Users = (props) => {
                 </NavLink>
                 {
                 user.followed 
-                ? <button className={styles.unfollow_button} onClick={ () => props.onUnfollow(user.id)}>Following</button>
-                : <button className={styles.follow_button} onClick={ () => props.onFollow(user.id)}>Not following</button>
+                ? <button className={styles.unfollow_button} onClick={ () => {
+                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{withCredentials:true})
+                    .then(response=>{
+                        if (response.data.resultCode===0) {
+                            
+                            props.onUnfollow(user.id)
+                        }
+                    })
+                  }}>Following</button>
+                : <button className={styles.follow_button} onClick={ () => {
+                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{},{withCredentials:true})
+                    .then(response=>{
+                        debugger
+                        if (response.data.resultCode===0) {
+                            props.onFollow(user.id)
+                        }
+                    })
+                  }}>Not following</button>
                 }
                 <div className={styles.user_info}>
                     <div className={styles.name_container}>{user.name}</div>

@@ -17,7 +17,8 @@ class UsersAPIComponent extends Component {
     this.props.toggleIsFetching(true);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.numOfUsersOnPage}&page=${this.props.currentPage}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.numOfUsersOnPage}&page=${this.props.currentPage}`,
+        {withCredentials:true}
       )
       .then((response) => {
         this.props.setUsers(response.data.items);
@@ -37,7 +38,8 @@ class UsersAPIComponent extends Component {
     this.props.setCurrentPage(page);
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.numOfUsersOnPage}&page=${page}`
+        `https://social-network.samuraijs.com/api/1.0/users?count=${this.props.numOfUsersOnPage}&page=${page}`,
+        {withCredentials:true}
       )
       .then((response) => {
         this.props.setUsers(response.data.items);

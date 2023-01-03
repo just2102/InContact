@@ -9,11 +9,10 @@ import { useLocation, useParams } from 'react-router-dom'
 const ProfileAPIComponent = (props) => {
     const params = useParams()
     // to display own profile
-    if (!params.userId) {
+    if (params.userId==='me' && props.currentUser!==undefined) {
         params.userId = props.currentUser.id
     }
     useEffect(() => {
-        // destructure props
         if (props.profile === null || params.userId !== props.profile.userId) {
             axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.userId}`)
             .then(response => {

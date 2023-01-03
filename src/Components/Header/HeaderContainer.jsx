@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 const HeaderAPIComponent = (props) => {
   useEffect(() => {
     // fetch user info ONLY if the user hasn't authorized yet AND if the user either doesn't exist (false) or we don't know if he exists yet (undefined)
-    if (props.isAuthorized === false && (props.doesUserExist === undefined || props.doesUserExist === false )) {
+    if (props.isAuthorized === undefined && (props.doesUserExist === undefined || props.doesUserExist === false )) {
       props.toggleIsFetching(true);
       axios
         .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
@@ -28,7 +28,9 @@ const HeaderAPIComponent = (props) => {
             //   })
             // }
             props.toggleIsFetching(false);
-          } else if (response.data.resultCode !== 0) {props.toggleIsFetching(false); props.setUserNotFound()}
+          } else if (response.data.resultCode !== 0) {
+            props.setUserNotFound(); props.toggleIsFetching(false);
+          }
         });
     }
   });

@@ -2,7 +2,7 @@ const Login = () => {
     return ( 
         <div className="login_container">
             <form action="">
-                sopme form
+                Login form...
             </form>
         </div>
      );

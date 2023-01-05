@@ -18,10 +18,10 @@ const Users = (props) => {
                 </NavLink>
                 {
                 user.followed 
-                ? <button disabled={props.followingInProgress.userId===user.id} className={styles.unfollow_button} onClick={ () => {
+                ? <button disabled={props.followingInProgress.userId===user.id || !props.isAuthorized} className={styles.unfollow_button} onClick={ () => {
                     props.onUnfollow(user.id)
                   }}>Following</button>
-                : <button disabled={props.followingInProgress.userId===user.id} className={styles.follow_button} onClick={ () => {
+                : <button disabled={props.followingInProgress.userId===user.id || !props.isAuthorized} className={styles.follow_button} onClick={ () => {
                     props.onFollow(user.id)
                   }}>Not following</button>
                 }

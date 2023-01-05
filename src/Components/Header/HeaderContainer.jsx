@@ -1,6 +1,6 @@
 import Header from "./Header";
 import { useEffect } from "react";
-import { setCurrentUserAvatar, getCurrentUser } from "../../Redux/authReducer";
+import { setCurrentUserAvatar, getCurrentUserAuthData } from "../../Redux/authReducer";
 import { connect } from "react-redux";
 
 
@@ -8,7 +8,7 @@ const HeaderAPIComponent = (props) => {
   useEffect(() => {
     // fetch user info ONLY if the user hasn't authorized yet AND if the user either doesn't exist (==false) or we don't know if he exists yet (==undefined)
     if (props.isAuthorized === undefined && (props.doesUserExist === undefined || props.doesUserExist === false )) {
-      props.getCurrentUser()
+      props.getCurrentUserAuthData()
     }
   }, [props.isAuthorized, props.doesUserExist]);
 
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
 const HeaderContainer = connect(mapStateToProps, {
   setCurrentUserAvatar,
 
-  getCurrentUser
+  getCurrentUserAuthData
 })(HeaderAPIComponent);
 
 export default HeaderContainer;

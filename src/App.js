@@ -7,7 +7,7 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import Nav from "./Components/Nav/Nav";
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import News from "./Components/News/News"
-import Messenger from "./Components/Messenger/Messenger";
+import MessengerContainer from "./Components/Messenger/MessengerContainer";
 import FriendsContainer from "./Components/Friends/FriendsContainer";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
@@ -38,7 +38,7 @@ const App = (props) => {
 
       <Route 
       path="/messenger/*" 
-      element={<Messenger
+      element={<MessengerContainer
       />}
       />
       

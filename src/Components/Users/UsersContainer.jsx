@@ -46,6 +46,8 @@ class UsersAPIComponent extends Component {
             currentPage={this.props.currentPage}
 
             followingInProgress={this.props.followingInProgress}
+
+            isAuthorized={this.props.isAuthorized}
           ></Users>
         )}
       </>
@@ -61,7 +63,9 @@ function mapStateToProps(state) {
     currentPage: state.usersPage.currentPage,
 
     isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress
+    followingInProgress: state.usersPage.followingInProgress,
+
+    isAuthorized: state.auth.isAuthorized
   };
 }
 

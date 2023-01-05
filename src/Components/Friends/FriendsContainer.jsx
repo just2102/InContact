@@ -3,7 +3,11 @@ import Friends from "./Friends"
 
 function mapStateToProps(state) {
     return {
-        state:state.friendsPage
+        friends: state.friendsPage.friends,
+
+        currentUser:    state.auth.currentUser,
+        isAuthorized:   state.auth.isAuthorized,
+
     }
 }
 function mapDispatchToProps(dispatch) {

@@ -13,23 +13,21 @@ let initialState = {
     currentUser: undefined,
     isFetching: false,
     isAuthorized: undefined,
-    doesUserExist: undefined
+    //doesUserExist: undefined
 }
 
 const setCurrentUser                = (id, login, email)       =>  ({type:SET_CURRENT_USER,    currentUser:{id,login,email}})
 export const setCurrentUserAvatar   = (avatar)                 =>  ({type:SET_CURRENT_USER_AVATAR, avatar})
 const toggleIsFetching              = (status)                 =>  ({type:TOGGLE_IS_FETCHING,  status:status})
-const setUserNotFound               = ()                       =>  ({type:SET_USER_NOT_FOUND})
+//const setUserNotFound               = ()                       =>  ({type:SET_USER_NOT_FOUND})
 
-export function getCurrentUser() {
+export function getCurrentUserAuthData() {
     return function (dispatch) {
         dispatch(toggleIsFetching(true));
 
         authAPI.whoAmI().then(data=>{
             if (data.resultCode===0) {
                 dispatch(setCurrentUser(data.data.id,data.data.login,data.data.email))
-            } else if (data.resultCode!==0) {
-                dispatch(setUserNotFound)
             }
             dispatch(toggleIsFetching(false))
         })
@@ -43,7 +41,7 @@ const authReducer = (state= initialState, action) => {
                 ...state,
                 currentUser: action.currentUser,
                 isAuthorized: true,
-                doesUserExist: true
+                //doesUserExist: true
             }
         case SET_CURRENT_USER_AVATAR:
             if (action.avatar) {
@@ -57,12 +55,12 @@ const authReducer = (state= initialState, action) => {
                 ...state,
                 isFetching: action.status
             }
-        case SET_USER_NOT_FOUND:
-            return {
-                ...state,
-                doesUserExist:false,
-                isAuthorized:false,
-            }
+        // case SET_USER_NOT_FOUND:
+        //     return {
+        //         ...state,
+        //         isAuthorized:false,
+        //         // doesUserExist:false,
+        //     }
         default:
             return state
     }

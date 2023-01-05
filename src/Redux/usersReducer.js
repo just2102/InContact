@@ -1,3 +1,4 @@
+import { usersAPI } from "../API/api"
 import saniaAvatar from "../img/sania.png"
 import kostiaAvatar from "../img/kostia.png"
 import vasiaAvatar from "../img/vasia.png"
@@ -38,6 +39,43 @@ export const setTotalUsers = (number) =>      ({type:SET_TOTAL_USERS, number: nu
 export const setCurrentPage = (page)  =>      ({type:SET_CURRENT_PAGE, page: page})
 export const toggleIsFetching = (isFetching) =>    ({type:TOGGLE_IS_FETCHING, isFetching: isFetching})
 export const toggleFollowingInProgress = (isFollowing, userId) =>    ({type:TOGGLE_FOLLOWING_IN_PROGRESS, isFollowing, userId})
+
+export const getUsers = (numOfUsersOnPage, currentPage) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(numOfUsersOnPage,currentPage).then(data => {
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsers(data.totalCount));
+    
+            dispatch(toggleIsFetching(false));
+          });
+    
+    }
+}
+export const followThunk = userId => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, userId));
+
+        usersAPI.followUser(userId).then(data=> {
+            if (data.resultCode === 0) {
+                
+                dispatch(follow(userId))
+            } dispatch(toggleFollowingInProgress(false,null))
+        })
+    }
+}
+export const unfollowThunk = userId => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, userId));
+
+        usersAPI.unfollowUser(userId).then(data=> {
+            if (data.resultCode === 0) {
+                dispatch(unfollow(userId))
+            } dispatch(toggleFollowingInProgress(false,null))
+        })
+    }
+}
 
 function usersReducer (state = initialState, action) {
     switch(action.type) {

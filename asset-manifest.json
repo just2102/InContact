@@ -1,14 +1,23 @@
 {
   "files": {
-    "main.css": "/InContact/static/css/main.b82c64e1.css",
-    "main.js": "/InContact/static/js/main.e49814d0.js",
+    "main.css": "/InContact/static/css/main.109e2a79.css",
+    "main.js": "/InContact/static/js/main.ff8f58d4.js",
+    "static/media/post2.jpg": "/InContact/static/media/post2.bbe20c584e10ac1db563.jpg",
+    "static/media/post1.jpg": "/InContact/static/media/post1.557078a578f1aa6d19ab.jpg",
     "static/media/inco_large.svg": "/InContact/static/media/inco_large.5d809b29b91ebb52f31cc9f786b828aa.svg",
+    "static/media/lenin.png": "/InContact/static/media/lenin.fcc9dc54112300bf9250.png",
+    "static/media/kirill.png": "/InContact/static/media/kirill.37cbb2ce7f1edf3fbd89.png",
+    "static/media/sania.png": "/InContact/static/media/sania.304ea0be3e218baae28a.png",
+    "static/media/vasia.png": "/InContact/static/media/vasia.0f4ae117bce883141047.png",
+    "static/media/masia.png": "/InContact/static/media/masia.7923793202742bacd507.png",
+    "static/media/kostia.png": "/InContact/static/media/kostia.f01c344cb4d9b66692ef.png",
+    "static/media/Spinner-0.7s-237px.svg": "/InContact/static/media/Spinner-0.7s-237px.119bfff0455209abf9ae8fdbe0b92a7f.svg",
     "index.html": "/InContact/index.html",
-    "main.b82c64e1.css.map": "/InContact/static/css/main.b82c64e1.css.map",
-    "main.e49814d0.js.map": "/InContact/static/js/main.e49814d0.js.map"
+    "main.109e2a79.css.map": "/InContact/static/css/main.109e2a79.css.map",
+    "main.ff8f58d4.js.map": "/InContact/static/js/main.ff8f58d4.js.map"
   },
   "entrypoints": [
-    "static/css/main.b82c64e1.css",
-    "static/js/main.e49814d0.js"
+    "static/css/main.109e2a79.css",
+    "static/js/main.ff8f58d4.js"
   ]
 }

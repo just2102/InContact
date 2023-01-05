@@ -2,7 +2,6 @@ import lenin from "../../../img/lenin.png"
 
 const UserInfo = (props) => {
     const user = props.profile
-
     return ( 
         <div className="user-section">
         <div id="user-section_image">

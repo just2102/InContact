@@ -32,20 +32,20 @@ let initialState = {
     }
 }
 
-export const follow = (userId)        =>      ({type:FOLLOW, userId: userId})
-export const unfollow = (userId)      =>      ({type:UNFOLLOW, userId: userId})
-export const setUsers = (users)       =>      ({type:SET_USERS, users: users})
+const followSuccess = (userId)        =>      ({type:FOLLOW, userId: userId})
+const unfollowSuccess = (userId)      =>      ({type:UNFOLLOW, userId: userId})
+const setUsersSuccess = (users)       =>      ({type:SET_USERS, users: users})
 export const setTotalUsers = (number) =>      ({type:SET_TOTAL_USERS, number: number})
 export const setCurrentPage = (page)  =>      ({type:SET_CURRENT_PAGE, page: page})
 export const toggleIsFetching = (isFetching) =>    ({type:TOGGLE_IS_FETCHING, isFetching: isFetching})
 export const toggleFollowingInProgress = (isFollowing, userId) =>    ({type:TOGGLE_FOLLOWING_IN_PROGRESS, isFollowing, userId})
 
-export const getUsers = (numOfUsersOnPage, currentPage) => {
-    return (dispatch) => {
+export function getUsers (numOfUsersOnPage, currentPage) {
+    return function(dispatch) {
         dispatch(toggleIsFetching(true));
 
         usersAPI.getUsers(numOfUsersOnPage,currentPage).then(data => {
-            dispatch(setUsers(data.items));
+            dispatch(setUsersSuccess(data.items));
             dispatch(setTotalUsers(data.totalCount));
     
             dispatch(toggleIsFetching(false));
@@ -53,25 +53,24 @@ export const getUsers = (numOfUsersOnPage, currentPage) => {
     
     }
 }
-export const followThunk = userId => {
-    return (dispatch) => {
+export function follow (userId) {
+    return function(dispatch) {
         dispatch(toggleFollowingInProgress(true, userId));
 
         usersAPI.followUser(userId).then(data=> {
             if (data.resultCode === 0) {
-                
-                dispatch(follow(userId))
+                dispatch(followSuccess(userId))
             } dispatch(toggleFollowingInProgress(false,null))
         })
     }
 }
-export const unfollowThunk = userId => {
-    return (dispatch) => {
+export function unfollow (userId) {
+    return function(dispatch) {
         dispatch(toggleFollowingInProgress(true, userId));
 
         usersAPI.unfollowUser(userId).then(data=> {
             if (data.resultCode === 0) {
-                dispatch(unfollow(userId))
+                dispatch(unfollowSuccess(userId))
             } dispatch(toggleFollowingInProgress(false,null))
         })
     }

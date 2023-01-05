@@ -1,7 +1,6 @@
 import styles from "./User/User.module.css"
 import leninAvatar from "../../img/lenin.png"
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../API/api";
 
 const Users = (props) => {
     let numberOfPages = Math.ceil(props.totalUsers / props.numOfUsersOnPage)

@@ -60,7 +60,7 @@ span {
     padding:5px;
 }
 .follow_button:hover {
-    background-color: rgb(229, 237, 244);
+    background-color: rgb(135, 197, 226);
     transform: scale(1.05);
     font-weight: bold;
     cursor: pointer;

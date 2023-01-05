@@ -1,39 +1,16 @@
 import Header from "./Header";
 import { useEffect } from "react";
-import axios from "axios";
-import { setCurrentUser, setCurrentUserAvatar, toggleIsFetching, setUserNotFound } from "../../Redux/authReducer";
+import { setCurrentUserAvatar, getCurrentUser } from "../../Redux/authReducer";
 import { connect } from "react-redux";
 
 
 const HeaderAPIComponent = (props) => {
   useEffect(() => {
-    // fetch user info ONLY if the user hasn't authorized yet AND if the user either doesn't exist (false) or we don't know if he exists yet (undefined)
+    // fetch user info ONLY if the user hasn't authorized yet AND if the user either doesn't exist (==false) or we don't know if he exists yet (==undefined)
     if (props.isAuthorized === undefined && (props.doesUserExist === undefined || props.doesUserExist === false )) {
-      props.toggleIsFetching(true);
-      axios
-        .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
-          withCredentials: true,
-        })
-        .then((response) => {
-          if (response.data.resultCode === 0) {
-            props.setCurrentUser(
-              response.data.data.id,
-              response.data.data.login,
-              response.data.data.email,
-            );
-            // ask for user profile to extract avatar with another get request, but only initialize it after the user's authorized
-            // if (props.isAuthorized) {
-            //   axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response2=>{
-            //     props.setCurrentUserAvatar(response2.data.photos.small)
-            //   })
-            // }
-            props.toggleIsFetching(false);
-          } else if (response.data.resultCode !== 0) {
-            props.setUserNotFound(); props.toggleIsFetching(false);
-          }
-        });
+      props.getCurrentUser()
     }
-  });
+  }, [props.isAuthorized, props.doesUserExist]);
 
   return (
     <Header
@@ -56,10 +33,9 @@ function mapStateToProps(state) {
 }
 
 const HeaderContainer = connect(mapStateToProps, {
-  setCurrentUser,
   setCurrentUserAvatar,
-  toggleIsFetching,
-  setUserNotFound,
+
+  getCurrentUser
 })(HeaderAPIComponent);
 
 export default HeaderContainer;

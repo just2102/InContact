@@ -1,3 +1,4 @@
+import { authAPI } from "../API/api"
 import lenin from "../img/lenin.png"
 
 const SET_CURRENT_USER          = "SET_CURRENT_USER"
@@ -15,10 +16,25 @@ let initialState = {
     doesUserExist: undefined
 }
 
-export const setCurrentUser     = (id, login, email)    =>  ({type:SET_CURRENT_USER,    currentUser:{id,login,email}})
-export const setCurrentUserAvatar   = (avatar)                  =>  ({type:SET_CURRENT_USER_AVATAR, avatar})
-export const toggleIsFetching       = (status)                  =>  ({type:TOGGLE_IS_FETCHING,  status:status})
-export const setUserNotFound        = ()                =>  ({type:SET_USER_NOT_FOUND})
+const setCurrentUser                = (id, login, email)       =>  ({type:SET_CURRENT_USER,    currentUser:{id,login,email}})
+export const setCurrentUserAvatar   = (avatar)                 =>  ({type:SET_CURRENT_USER_AVATAR, avatar})
+const toggleIsFetching              = (status)                 =>  ({type:TOGGLE_IS_FETCHING,  status:status})
+const setUserNotFound               = ()                       =>  ({type:SET_USER_NOT_FOUND})
+
+export function getCurrentUser() {
+    return function (dispatch) {
+        dispatch(toggleIsFetching(true));
+
+        authAPI.whoAmI().then(data=>{
+            if (data.resultCode===0) {
+                dispatch(setCurrentUser(data.data.id,data.data.login,data.data.email))
+            } else if (data.resultCode!==0) {
+                dispatch(setUserNotFound)
+            }
+            dispatch(toggleIsFetching(false))
+        })
+    }
+}
 
 const authReducer = (state= initialState, action) => {
     switch (action.type) {
@@ -35,8 +51,7 @@ const authReducer = (state= initialState, action) => {
                 stateCopy.currentUser = {...state.currentUser}
                 stateCopy.currentUser.avatar = action.avatar
                 return stateCopy
-            } else {
-                return state}
+            } else {return state}
         case TOGGLE_IS_FETCHING:
             return {
                 ...state,

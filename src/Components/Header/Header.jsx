@@ -2,7 +2,6 @@ import mainLogo from "../../img/inco_large.svg";
 import s from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import Preloader from "../Common/Preloader"
-import lenin from "../../img/lenin.png"
 
 
 const Header = (props) => {

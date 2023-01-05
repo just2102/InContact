@@ -14,9 +14,10 @@ const Profile = (props) => {
     // });
     return ( 
       <div className="profile">
-        {props.profile===null || props.profile === undefined
-        ?<Preloader/>
-        :<UserInfo profile={props.profile} />}
+        {
+        props.profile===null || props.profile === undefined || props.isGettingProfile ? <Preloader/>
+        :<UserInfo profile={props.profile} />
+        }
 
         <MyPostsContainer></MyPostsContainer>
       </div>

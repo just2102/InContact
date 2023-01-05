@@ -15,16 +15,17 @@ const ProfileAPIComponent = (props) => {
         props.getProfile(params.userId)
     }, [params.userId, props.currentUser])
     return ( 
-        <Profile profile = {props.profile} isGettingProfile = {props.isGettingProfile}></Profile>
+        <Profile profile = {props.profile} isGettingProfile = {props.isGettingProfile} isAuthorized = {props.isAuthorized}></Profile>
      );
 }
 
 function mapStateToProps (state) {
     return {
-        profile: state.profilePage.profile,
-        currentUser: state.auth.currentUser,
+        profile:            state.profilePage.profile,
+        isGettingProfile:   state.profilePage.isGettingProfile,
 
-        isGettingProfile: state.profilePage.isGettingProfile,
+        currentUser:    state.auth.currentUser,
+        isAuthorized:   state.auth.isAuthorized
     }
 }
 

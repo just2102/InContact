@@ -13,9 +13,6 @@ const Profile = (props) => {
     //     username: 'just2102',
     //     status: "I'm building this social network"
     // });
-    if (!props.isAuthorized) {
-      return <Navigate to="/login"></Navigate>
-    }
     return ( 
       <div className="profile">
         {

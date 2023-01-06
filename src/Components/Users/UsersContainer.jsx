@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { Component } from "react";
 import {
   setCurrentPage,
-  setTotalUsers,
   toggleIsFetching,
   toggleFollowingInProgress,
   //thunks
@@ -15,7 +14,7 @@ import Preloader from "../Common/Preloader";
 
 class UsersAPIComponent extends Component {
   componentDidMount() {
-    this.props.getUsers(this.numOfUsersOnPage,this.currentPage)
+    this.props.getUsers(this.props.numOfUsersOnPage,this.props.currentPage)
   };
   onUnfollow = (userId) => {
     this.props.unfollow(userId);
@@ -71,7 +70,6 @@ function mapStateToProps(state) {
 
 const UsersContainer = connect(mapStateToProps, {
   setCurrentPage,
-  setTotalUsers,
 
   toggleIsFetching,
   toggleFollowingInProgress,

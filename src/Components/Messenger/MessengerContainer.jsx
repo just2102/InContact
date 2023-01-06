@@ -1,16 +1,17 @@
 import { connect } from "react-redux";
 import Messenger from "./Messenger";
+import withAuthRedirect from "../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 function mapStateToProps (state) {
     return {
         currentUser:    state.auth.currentUser,
-        isAuthorized:   state.auth.isAuthorized
     }
 }
 
-
-const MessengerContainer = connect(mapStateToProps, {
-
-}) (Messenger)
+const MessengerContainer = compose(
+    connect(mapStateToProps,{}),
+    withAuthRedirect
+)(Messenger)
 
 export default MessengerContainer

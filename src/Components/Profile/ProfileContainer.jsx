@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getProfile } from '../../Redux/profileReducer';
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom'
+import withAuthRedirect from '../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 const ProfileAPIComponent = (props) => {
     const params = useParams()
@@ -13,11 +15,12 @@ const ProfileAPIComponent = (props) => {
             params.userId = props.currentUser.id
         }
         props.getProfile(params.userId)
-    }, [params.userId, props.currentUser])
+    }, [params.userId, props.currentUser, props.isAuthorized])
     return ( 
         <Profile profile = {props.profile} isGettingProfile = {props.isGettingProfile} isAuthorized = {props.isAuthorized}></Profile>
      );
 }
+
 
 function mapStateToProps (state) {
     return {
@@ -25,13 +28,12 @@ function mapStateToProps (state) {
         isGettingProfile:   state.profilePage.isGettingProfile,
 
         currentUser:    state.auth.currentUser,
-        isAuthorized:   state.auth.isAuthorized
     }
 }
 
-
-const ProfileContainer = connect(mapStateToProps, {
-    getProfile
-}) (ProfileAPIComponent)
+const ProfileContainer = compose(
+    connect(mapStateToProps,{getProfile}),
+    withAuthRedirect
+)(ProfileAPIComponent)
 
 export default ProfileContainer

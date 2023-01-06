@@ -11,7 +11,6 @@ const Users = (props) => {
     }
     let mappedUsers = props.usersData.map (user => {
         return (
-
             <div className={styles.user}>
                 <NavLink to={`/profile/${user.id}`}>
                     <div className={styles.avatar}><img src={user.photos.small ? user.photos.small : leninAvatar} alt="" /></div>

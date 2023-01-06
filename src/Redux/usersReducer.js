@@ -35,7 +35,7 @@ let initialState = {
 const followSuccess = (userId)        =>      ({type:FOLLOW, userId: userId})
 const unfollowSuccess = (userId)      =>      ({type:UNFOLLOW, userId: userId})
 const setUsersSuccess = (users)       =>      ({type:SET_USERS, users: users})
-export const setTotalUsers = (number) =>      ({type:SET_TOTAL_USERS, number: number})
+const setTotalUsers = (number) =>      ({type:SET_TOTAL_USERS, number: number})
 export const setCurrentPage = (page)  =>      ({type:SET_CURRENT_PAGE, page: page})
 export const toggleIsFetching = (isFetching) =>    ({type:TOGGLE_IS_FETCHING, isFetching: isFetching})
 export const toggleFollowingInProgress = (isFollowing, userId) =>    ({type:TOGGLE_FOLLOWING_IN_PROGRESS, isFollowing, userId})

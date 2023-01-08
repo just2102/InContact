@@ -17,7 +17,10 @@ const ProfileAPIComponent = (props) => {
         props.getProfile(params.userId)
     }, [params.userId, props.currentUser, props.isAuthorized])
     return ( 
-        <Profile profile = {props.profile} isGettingProfile = {props.isGettingProfile} isAuthorized = {props.isAuthorized}></Profile>
+        <Profile 
+        profile = {props.profile} 
+        isGettingProfile = {props.isGettingProfile} 
+        isAuthorized = {props.isAuthorized}></Profile>
      );
 }
 

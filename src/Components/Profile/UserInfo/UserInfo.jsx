@@ -1,25 +1,26 @@
 import lenin from "../../../img/lenin.png"
+import ProfileStatus from "./ProfileStatus";
 
 const UserInfo = (props) => {
-    const user = props.profile
+    const profile = props.profile
     return ( 
         <div className="user-section">
         <div id="user-section_image">
           {/* <img src="https://media.istockphoto.com/id/139392762/photo/venetian-mask.jpg?s=170667a&w=0&k=20&c=wgFV5biG18-7ApTtgmXieuCsYFEIZiQWJa02eqbQp3s=" alt="" /> */}
-          {!user.photos.large || !user.photos.small
+          {!profile.photos.large || !profile.photos.small
           ? <img src={lenin} alt="" /> 
-          : <img src={user.photos.large} alt="" />
+          : <img src={profile.photos.large} alt="" />
           }
           </div>
 
 
         <div id="user-section_data">
-          <h2 id="user-name">{user.fullName}</h2>
-          <h3 id="user-status">{user.status}</h3>
-          <p>Date of Birth: {user.dob}</p>
-          <p>Education: {user.education}</p>
-          <p>Username: @{user.username} </p>
-          <p>About me: {user.aboutMe}</p>
+          <h2 id="user-name">{profile.fullName}</h2>
+          <ProfileStatus status={'Hello everyone!!!'}/>
+          <p>Date of Birth: {profile.dob}</p>
+          <p>Education: {profile.education}</p>
+          <p>Username: @{profile.username} </p>
+          <p>About me: {profile.aboutMe}</p>
         </div>
 
         <div className="user-section_photos">

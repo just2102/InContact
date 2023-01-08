@@ -1,9 +1,7 @@
 import './Profile.css'
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-//import UserInfoContainer from "./UserInfo/UserInfoContainer";
 import UserInfo from "./UserInfo/UserInfo";
 import Preloader from '../Common/Preloader';
-import { Navigate } from 'react-router-dom';
 
 const Profile = (props) => {
     // const [user, setUser] = useState({

@@ -5,6 +5,7 @@ import { profileAPI } from '../API/api'
 const ADD_POST              = "ADD-POST"
 const UPDATE_NEW_POST_TEXT  = "UPDATE-NEW-POST-TEXT"
 const SET_PROFILE           = "SET_PROFILE"
+const SET_STATUS            = "SET_STATUS"
 const TOGGLE_IS_GETTING_PROFILE = "TOGGLE_IS_GETTING_PROFILE"
 let initialState = {
   currentUser: 
@@ -25,12 +26,14 @@ let initialState = {
   ],
   newPostText:'',
   profile: null,
+  status: undefined,
   isGettingProfile: false
 }
 
 export const addPost = ()                 => ({type: ADD_POST})
 export const updateNewPostText = (text)   => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 const setProfile = (profile)              => ({type: SET_PROFILE, profile})
+const setStatus = (status)                => ({type: SET_STATUS, status})
 const toggleIsGettingProfile = (isGetting)=> ({type: TOGGLE_IS_GETTING_PROFILE, isGetting})
 
 export function getProfile (userId) {
@@ -40,6 +43,22 @@ export function getProfile (userId) {
     profileAPI.getProfile(userId).then(data=>{
       dispatch(setProfile(data))
       dispatch(toggleIsGettingProfile(false))
+    })
+  }
+}
+export function getStatus (userId) {
+  return function (dispatch) {
+    profileAPI.getStatus(userId).then(data=>{
+      dispatch(setStatus(data))
+    })
+  }
+}
+export function updateStatus (status) {
+  return function (dispatch) {
+    profileAPI.updateStatus(status).then(data=>{
+      if (data.resultCode === 0) {
+        dispatch(setStatus(status))
+      }
     })
   }
 }
@@ -72,6 +91,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             profile: action.profile
           }
+          case SET_STATUS:
+            return {
+              ...state,
+              status: action.status
+            }
         case TOGGLE_IS_GETTING_PROFILE:
           return {
             ...state,

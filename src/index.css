@@ -25,3 +25,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* LOGIN FORM */
+.login_container form {
+  display: grid;
+  
+}
+.login_container form span {
+  color:red;
+}
+.invalid_input {
+  color:red;
+}

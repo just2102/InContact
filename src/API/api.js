@@ -35,6 +35,18 @@ export const profileAPI = {
     .then(response => {
       return response.data
     });
+  },
+  getStatus(userId) {
+    return instance.get(`profile/status/${userId}`)
+    .then(response=> {
+      return response.data
+    })
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, {status: status})
+    .then(response=> {
+      return response.data
+    })
   }
 }
 
@@ -42,7 +54,14 @@ export const authAPI = {
   whoAmI() {
     return instance.get(`auth/me`)
     .then(response=>{
+      debugger
       return response.data
+    })
+  },
+  login(email, password, rememberMe) {
+    return instance.post(`auth/login`, {email, password, rememberMe})
+    .then(response=> {
+      return response
     })
   }
 }

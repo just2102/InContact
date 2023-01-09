@@ -15,7 +15,7 @@ const Profile = (props) => {
       <div className="profile">
         {
         props.profile===null || props.profile === undefined || props.isGettingProfile ? <Preloader/>
-        :<UserInfo profile={props.profile} />
+        :<UserInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         }
 
         <MyPostsContainer></MyPostsContainer>

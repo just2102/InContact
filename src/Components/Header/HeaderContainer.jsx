@@ -10,7 +10,7 @@ const HeaderAPIComponent = (props) => {
     if (props.isAuthorized === undefined && (props.doesUserExist === undefined || props.doesUserExist === false )) {
       props.getCurrentUserAuthData()
     }
-  }, [props.isAuthorized, props.doesUserExist]);
+  }, [props.isAuthorized, props.doesUserExist, props.isFetching]);
 
   return (
     <Header

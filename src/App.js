@@ -12,7 +12,7 @@ import FriendsContainer from "./Components/Friends/FriendsContainer";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
 import UsersContainer from "./Components/Users/UsersContainer";
-import Login from './Components/Login/Login';
+import LoginContainer from './Components/Login/LoginContainer';
 
 
 
@@ -30,7 +30,7 @@ const App = (props) => {
       {/* <Route path='me' element={<ProfileContainer/>} /> */}
       </Route>
 
-      <Route path="/login" element={<Login/>}></Route>
+      <Route path="/login" element={<LoginContainer/>}></Route>
 
       <Route 
       path="/news" 

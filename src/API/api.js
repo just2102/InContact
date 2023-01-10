@@ -77,8 +77,9 @@ export const messengerAPI = {
     })
   },
   sendMessage (friendId, msg) {
-    return instance.post(`dialogs/${friendId}/messages`, {msg}).then(response=> {
-      return response
+    return instance.post(`dialogs/${friendId}/messages`, {body: msg}).then(response=> {
+      debugger
+      return response.data
     })
   },
 

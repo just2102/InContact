@@ -5,8 +5,8 @@ import masiaAvatar from "../img/masia.png";
 import kirillAvatar from "../img/kirill.png";
 import leninAvatar from "../img/lenin.png";
 import { messengerAPI } from "../API/api";
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+const SEND_MESSAGE_SUCCESS = "SEND_MESSAGE_SUCCESS";
+// const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
 
 const SET_DIALOGUES = "SET_DIALOGUES"
 const SET_MESSAGES = "SET_MESSAGES"
@@ -24,20 +24,19 @@ let initialState = {
     // {id:5,name:'Kirill',avatar:kirillAvatar},
     // {id:6,name:'Lenin',avatar:leninAvatar}
   ],
-  dialoguesLength: undefined
   // newMessageText:'some new message text!'
 };
 
-const sendMessageSuccess = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageText = (text) => ({
-  type: UPDATE_NEW_MESSAGE_TEXT,
-  text: text,
-});
+const sendMessageSuccess = (newMessage) => ({ type: SEND_MESSAGE_SUCCESS, newMessage });
+// export const updateNewMessageText = (text) => ({
+//   type: UPDATE_NEW_MESSAGE_TEXT,
+//   text: text,
+// });
 export const sendMessage = (friendId, msg) => {
   return (dispatch) => {
-    messengerAPI.sendMessage(friendId, msg).then((response) => {
-      if (response.resultCode === 200) {
-        dispatch(sendMessageSuccess());
+    messengerAPI.sendMessage(friendId, msg).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(sendMessageSuccess(data.data.message));
       }
     });
   };
@@ -67,29 +66,17 @@ export const getMessages = (friendId) => {
 
 const messengerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SEND_MESSAGE:
-      if (state.newMessageText !== "") {
-        let lastMessageId =
-          state.messagesData[state.messagesData.length - 1].id;
-        return {
-          ...state,
-          newMessageText: "",
-          messagesData: [
-            ...state.messagesData,
-            {
-              id: lastMessageId + 1,
-              sender: "Lenin",
-              text: state.newMessageText,
-            },
-          ],
-        };
-      }
-      break;
-    case UPDATE_NEW_MESSAGE_TEXT:
+    case SEND_MESSAGE_SUCCESS:
+      debugger
       return {
         ...state,
-        newMessageText: action.text,
-      };
+        messagesData: [...state.messagesData, action.newMessage]
+      }
+    // case UPDATE_NEW_MESSAGE_TEXT:
+    //   return {
+    //     ...state,
+    //     newMessageText: action.text,
+    //   };
     case SET_DIALOGUES:
         return {
             ...state,

@@ -15,8 +15,8 @@ const Messages = (props) => {
             </div>
         )
     })
-    function onSendMessage(msg) {
-        props.sendMessage(msg)
+    function onMessageSend(msg) {
+        props.onMessageSend(msg)
     }
     // function onMessageChange (e) {
     //     let text = e.target.value
@@ -28,7 +28,7 @@ const Messages = (props) => {
                 messages_header
             </div>
             <div>{mappedMessagesData}</div>
-            <MessageForm onMessageSend = {onSendMessage}></MessageForm>
+            <MessageForm onMessageSend = {onMessageSend}></MessageForm>
         </div>
      );
 }

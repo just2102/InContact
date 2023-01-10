@@ -16,8 +16,8 @@ const MessagesContainer = (props) => {
   useEffect(()=> {
     dispatch(getMessages(params.friendId))
   }, [params.friendId])
-  const onMessageSend = (friendId, msg) => {
-    dispatch(sendMessage(friendId, msg))
+  const onMessageSend = (msg) => {
+    dispatch(sendMessage(params.friendId, msg))
   }
 
   return ( 

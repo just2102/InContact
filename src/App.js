@@ -14,10 +14,6 @@ import Settings from "./Components/Settings/Settings";
 import UsersContainer from "./Components/Users/UsersContainer";
 import LoginContainer from './Components/Login/LoginContainer';
 
-
-
-
-
 const App = (props) => {
   return (
     <div className="app-wrapper">
@@ -36,11 +32,9 @@ const App = (props) => {
       path="/news" 
       element={<News/>}/>
 
-      <Route 
-      path="/messenger/*" 
-      element={<MessengerContainer
-      />}
-      />
+      <Route path="/messenger/" element={<MessengerContainer/>}>
+        <Route path=":friendId" element={<MessengerContainer/>}></Route>
+      </Route>
       
       <Route 
       path="/friends" 

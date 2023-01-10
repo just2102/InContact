@@ -54,7 +54,6 @@ export const authAPI = {
   whoAmI() {
     return instance.get(`auth/me`)
     .then(response=>{
-      debugger
       return response.data
     })
   },
@@ -64,4 +63,23 @@ export const authAPI = {
       return response
     })
   }
+}
+
+export const messengerAPI = {
+  getDialogues () {
+    return instance.get(`dialogs`).then(response=>{
+      return response
+    })
+  },
+  getMessages (friendId) {
+    return instance.get(`dialogs/${friendId}/messages`).then(response=> {
+      return response
+    })
+  },
+  sendMessage (friendId, msg) {
+    return instance.post(`dialogs/${friendId}/messages`, {msg}).then(response=> {
+      return response
+    })
+  },
+
 }

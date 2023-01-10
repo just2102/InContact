@@ -1,56 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 
-class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
-    status: this.props.status
-  };
-  activateEditMode = () => {
-    this.setState({
-        editMode:true
-    })
+const ProfileStatus = (props) => {
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
+  const activateEditMode = () => {
+    setEditMode(true)
   }
-  deactivateEditMode = () => {
-    this.setState({
-        editMode:false
-    })
-    this.props.updateStatus(this.state.status)
+  const deactivateEditMode = () => {
+    setEditMode(false)
+    props.updateStatus(status)
   }
-  onStatusChange = (e) => {
-    this.setState({
-      status: e.target.value
-    })
+  const onStatusChange = (e) => {
+    setStatus(e.target.value)
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status:this.props.status
-      })
+  useEffect(() => {
+    if (props.status!==status) {
+      setStatus(status)
     }
-   console.log('updated') 
-  }
-  render() {
+  }, [status, editMode, props.status])
     return (
       <>
         <div className="user-status">
-            {!this.state.editMode &&
+            {!editMode &&
             <div>
-              <span onDoubleClick={()=>{this.activateEditMode()}}>{this.props.status || "---"}</span>
+              <span onDoubleClick={()=>{activateEditMode()}}>{props.status || "---"}</span>
             </div>}
 
-            {this.state.editMode &&
+            { editMode &&
             <div>
               <input 
               autoFocus={true} 
-              onBlur={()=> {this.deactivateEditMode()}} 
+              onBlur={()=> {deactivateEditMode()}} 
               type="text" 
-              value={this.state.status}
-              onChange={this.onStatusChange}/> 
+              value={status}
+              onChange={onStatusChange}/> 
             </div>}
         </div>
       </>
     );
-  }
 }
 
 export default ProfileStatus;

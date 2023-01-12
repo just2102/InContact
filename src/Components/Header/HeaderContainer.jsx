@@ -1,6 +1,6 @@
 import Header from "./Header";
 import { useEffect } from "react";
-import { setCurrentUserAvatar, getCurrentUserAuthData } from "../../Redux/authReducer";
+import { setCurrentUserAvatar, getCurrentUserAuthData, requestLogout } from "../../Redux/authReducer";
 import { connect } from "react-redux";
 
 
@@ -11,13 +11,17 @@ const HeaderAPIComponent = (props) => {
       props.getCurrentUserAuthData()
     }
   }, [props.isAuthorized, props.doesUserExist, props.isFetching]);
-
+  function onLogoutRequest () {
+    props.requestLogout()
+  }
   return (
     <Header
       currentUser={props.currentUser}
 
       isFetching={props.isFetching}
       isAuthorized={props.isAuthorized}
+
+      onLogoutRequest={onLogoutRequest}
     ></Header>
   );
 };
@@ -35,7 +39,8 @@ function mapStateToProps(state) {
 const HeaderContainer = connect(mapStateToProps, {
   setCurrentUserAvatar,
 
-  getCurrentUserAuthData
+  getCurrentUserAuthData,
+  requestLogout
 })(HeaderAPIComponent);
 
 export default HeaderContainer;

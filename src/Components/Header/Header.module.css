@@ -21,6 +21,9 @@
   header h1, header h2 {
     padding:5px;
   }
+  header h4 {
+    margin-bottom: .3rem;
+  }
   
 
 /* login */

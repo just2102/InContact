@@ -12,16 +12,19 @@ const MessagesContainer = (props) => {
   const params = useParams()
   const dispatch = useDispatch();
   const messagesData = useSelector(state=> state.messengerPage.messagesData)
+  const dialoguesData = useSelector(state=> state.messengerPage.dialoguesData)
   const currentUser = useSelector(state=> state.auth.currentUser)
   useEffect(()=> {
-    dispatch(getMessages(params.friendId))
+    if (params.friendId) {
+      dispatch(getMessages(params.friendId))
+    }
   }, [params.friendId])
   const onMessageSend = (msg) => {
     dispatch(sendMessage(params.friendId, msg))
   }
-
-  return ( 
-    <Messages messagesData={messagesData} onMessageSend={onMessageSend} currentUser={currentUser}></Messages>
+  if (!params.friendId) {return <></>}
+  return (
+    <Messages messagesData={messagesData} onMessageSend={onMessageSend} currentUser={currentUser} dialoguesData={dialoguesData}></Messages>
    );
 }
 // function mapStateToProps(state) {

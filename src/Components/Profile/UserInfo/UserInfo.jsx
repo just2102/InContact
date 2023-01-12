@@ -15,7 +15,7 @@ const UserInfo = (props) => {
 
         <div id="user-section_data">
           <h2 id="user-name">{profile.fullName}</h2>
-          <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+          {profile && <ProfileStatus status={props.status} updateStatus={props.updateStatus}/> }
           <p>Date of Birth: {profile.dob}</p>
           <p>Education: {profile.education}</p>
           <p>Username: @{profile.username} </p>

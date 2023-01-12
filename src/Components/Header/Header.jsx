@@ -14,7 +14,7 @@ const Header = (props) => {
       <div className={s.login_block}>
         {!props.isAuthorized
         ? <NavLink to="/login">Login</NavLink> 
-        : <h4>Hi, {props.currentUser.login}</h4>}
+        : <div> <h4>Hi, {props.currentUser.login}</h4> <span onClick={props.onLogoutRequest}>Logout</span></div> }
         {/* {!props.currentUser.avatar ? <img src={lenin} alt="" /> : <img src={props.currentUser.avatar} alt="" />}  */}
       </div>
     </header>
